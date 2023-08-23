@@ -26,12 +26,12 @@ public class CurrencyController : ControllerBase
 
         try
         {
-            XmlDocument xmlVerisi = new XmlDocument();
-            xmlVerisi.Load("http://www.tcmb.gov.tr/kurlar/today.xml");
+            XmlDocument xmlData = new XmlDocument();
+            xmlData.Load("http://www.tcmb.gov.tr/kurlar/today.xml");
 
-            decimal usd = Convert.ToDecimal(xmlVerisi.SelectSingleNode(string.Format("Tarih_Date/Currency[@Kod='{0}']/ForexSelling", "USD")).InnerText.Replace('.', ','));
-            decimal eur = Convert.ToDecimal(xmlVerisi.SelectSingleNode(string.Format("Tarih_Date/Currency[@Kod='{0}']/ForexSelling", "EUR")).InnerText.Replace('.', ','));
-            decimal gbp = Convert.ToDecimal(xmlVerisi.SelectSingleNode(string.Format("Tarih_Date/Currency[@Kod='{0}']/ForexSelling", "GBP")).InnerText.Replace('.', ','));
+            decimal usd = Convert.ToDecimal(xmlData.SelectSingleNode(string.Format("Tarih_Date/Currency[@Kod='{0}']/ForexSelling", "USD")).InnerText.Replace('.', ','));
+            decimal eur = Convert.ToDecimal(xmlData.SelectSingleNode(string.Format("Tarih_Date/Currency[@Kod='{0}']/ForexSelling", "EUR")).InnerText.Replace('.', ','));
+            decimal gbp = Convert.ToDecimal(xmlData.SelectSingleNode(string.Format("Tarih_Date/Currency[@Kod='{0}']/ForexSelling", "GBP")).InnerText.Replace('.', ','));
 
             response.Currencies.Add(new GetCurrencyResponse
             {
